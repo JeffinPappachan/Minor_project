@@ -1,0 +1,66 @@
+/* login.css */
+
+body {
+  display: auto;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+}
+
+.login-form-container {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  background-color: white;
+  max-width: 500px;
+  width: 100%;
+  margin: 60px auto 0;
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex > div {
+  margin-bottom: 10px;
+}
+
+.flex .mb-2 {
+  margin-bottom: 5px;
+}
+
+.flex .block {
+  display: block;
+}
+
+.flex input[type="email"],
+.flex input[type="password"] {
+  padding: 10px;
+  border: 1px solid #ddd;
+  width: 100%;
+  transition: border 0.3s ease;
+}
+
+.flex input[type="email"]:focus,
+.flex input[type="password"]:focus {
+  border-color: #007BFF;
+}
+
+.flex button {
+    display: flex; /* Added this line */
+  justify-content: center; /* Added this line */
+  align-items: center; /* Added this line */
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease
+}
+
+.flex button:hover {
+  background-color: #0056b3;
+}
