@@ -1,10 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
+import { auth } from "./Firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
 export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  
+  const [isLoggedin, setIsLoggedin] = useState(false);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setIsLoggedin(true);
+      } else {
+        setIsLoggedin(false);
+      }
+    });
+  }, []);
 
   return (
     <nav className="navbar">
@@ -33,12 +45,16 @@ export const Navbar = () => {
         <li>
           <NavLink to="/overview">Overview</NavLink>
         </li>
-        <li>
-          <NavLink to="/login">Login</NavLink>
-        </li>
-        <li>
-          <NavLink to="/signup">Signup</NavLink>
-        </li>
+        {!isLoggedin && (
+          <>
+            <li>
+              <NavLink to="/login">Login</NavLink>
+            </li>
+            <li>
+              <NavLink to="/signup">Signup</NavLink>
+            </li>
+          </>
+        )}
         <li>
           <NavLink to="/profile">Profile</NavLink>
         </li>
