@@ -8,7 +8,7 @@ export function Login() {
     email: "",
     password: "",
   });
-
+  const [user, setUser] = useState("");
   const [remember, setRemember] = useState(false);
 
   const handleChange = (e) => {
@@ -18,18 +18,18 @@ export function Login() {
     });
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await signInWithEmailAndPassword(auth, formData.email, formData.password);
-      console.log("Users logged in Succesfully");
+      await signInWithEmailAndPassword(auth, formData.email, formData.password)
+        .then((userCredential) => (setUser(userCredential?.user)))
+        .finally(() => console.log("User Logged in with email: ", user.email));
       window.location.href = "/profile";
-      
+
     } catch (error) {
       console.error(error.messsage);
-      
     }
-    console.log(formData);
+    // console.log(formData);
     if (remember) {
       localStorage.setItem("username", formData.email);
       localStorage.setItem("password", formData.password);
